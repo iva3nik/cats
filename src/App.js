@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import Header from "./components/Header/Header";
@@ -6,6 +7,16 @@ import Gallery from "./components/Gallery/Gallery";
 
 function App() {
   const [listCats, setListCats] = useState([]);
+  const [listLikedCats, setListLikedCats] = useState([]);
+
+  const likeCat = (cat) => {
+    const likedCats = JSON.parse(localStorage.getItem("likedCats")) || [];
+    console.log("likedCats: ", likedCats);
+    likedCats.push(cat);
+
+    setListLikedCats(likedCats);
+    localStorage.setItem("likedCats", JSON.stringify(likedCats));
+  };
 
   useEffect(() => {
     fetch(
@@ -18,13 +29,23 @@ function App() {
       }
     )
       .then((res) => res.json())
-      .then((data) => setListCats(data));
+      .then((data) => setListCats(data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <div className="App">
       <Header />
-      <Gallery cats={listCats} />
+      <Routes>
+        <Route
+          path="/"
+          element={<Gallery cats={listCats} likeCat={likeCat} />}
+        />
+        <Route
+          path="/favourite-cats"
+          element={<Gallery cats={listLikedCats} />}
+        />
+      </Routes>
     </div>
   );
 }

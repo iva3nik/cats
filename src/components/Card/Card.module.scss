@@ -22,9 +22,15 @@
       background-image: url("../../assets/svg/svg_naked_heart.svg");
       transition: all 0.3s linear;
       cursor: pointer;
+      border: none;
+      background-color: transparent;
 
       &:hover {
         background-image: url("../../assets/svg/svg_hovered_heart.svg");
+      }
+
+      &_liked {
+        background-image: url("../../assets/svg/svg_heart.svg");
       }
     }
   }
