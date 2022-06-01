@@ -3,12 +3,16 @@ import cn from "classnames";
 
 import s from "./Card.module.scss";
 
-const Card = ({ cat, likeCat }) => {
+const Card = ({ cat, likeCat, deleteCat }) => {
   const [isLiked, setIsLiked] = useState(false);
 
   const handleLikeCat = (cat) => {
-    setIsLiked(true);
-    likeCat(cat);
+    if (isLiked) {
+      deleteCat(cat);
+    } else {
+      setIsLiked(true);
+      likeCat(cat);
+    }
   };
 
   return (
@@ -20,7 +24,6 @@ const Card = ({ cat, likeCat }) => {
         key={cat.id}
       />
       <button
-        disabled={isLiked ? true : false}
         className={cn(s.card__like, { [s.card__like_liked]: isLiked })}
         onClick={() => handleLikeCat(cat)}
       ></button>
