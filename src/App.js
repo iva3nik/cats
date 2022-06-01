@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 
 import Header from "./components/Header/Header";
@@ -9,6 +9,7 @@ import * as main from "./utils/MainApi";
 
 function App() {
   const [listCats, setListCats] = useState([]);
+  const navigate = useNavigate();
 
   const likeCat = (cat) => {
     const newList = listCats.map((i) =>
@@ -18,6 +19,7 @@ function App() {
   };
 
   useEffect(() => {
+    navigate("/");
     main
       .getCats()
       .then((data) => setListCats(data))
