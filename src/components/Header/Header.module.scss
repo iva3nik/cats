@@ -7,10 +7,6 @@
 
   &__list {
     display: flex;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    padding: 23px 0;
   }
 
   &__link {
@@ -34,6 +30,19 @@
 
     &_active {
       background-color: #1e88e5;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    box-sizing: border-box;
+    padding: 0 16px;
+
+    &__link {
+      padding: 10px 40px;
+      font-size: 14px;
+      line-height: 16px;
     }
   }
 }

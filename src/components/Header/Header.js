@@ -12,24 +12,21 @@ const listNavigation = [
 const Header = () => {
   return (
     <header className={s.header}>
-      <nav>
-        <ul className={s.header__list}>
-          {listNavigation &&
-            listNavigation.map((link, index) => (
-              <li className={s.header__li} key={link.title + index}>
-                <NavLink
-                  className={(navData) =>
-                    navData.isActive
-                      ? cn(s.header__link, s.header__link_active)
-                      : s.header__link
-                  }
-                  to={link.to}
-                >
-                  {link.title}
-                </NavLink>
-              </li>
-            ))}
-        </ul>
+      <nav className={s.header__list}>
+        {listNavigation &&
+          listNavigation.map((link, index) => (
+            <NavLink
+              className={(navData) =>
+                navData.isActive
+                  ? cn(s.header__link, s.header__link_active)
+                  : s.header__link
+              }
+              to={link.to}
+              key={link.title + index}
+            >
+              {link.title}
+            </NavLink>
+          ))}
       </nav>
     </header>
   );
