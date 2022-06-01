@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
@@ -18,7 +18,6 @@ function App() {
   };
 
   useEffect(() => {
-    localStorage.setItem("likedCats", JSON.stringify([]));
     main
       .getCats()
       .then((data) => setListCats(data))
